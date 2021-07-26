@@ -1,19 +1,19 @@
 <template>
   <div class="container mx-auto">
     <h1 class="text-center border-b-2 py-4">Список задач</h1>
-    <users-block
+    <users-tasks
       :usersTask='users'
       :users='countUsers'
-    ></users-block>
+    ></users-tasks>
   </div>
 </template>
 
 <script>
-import usersBlock from '@/components/blocks/users'
+import usersTasks from '@/components/blocks/usersTasks'
 
 export default {
   components: {
-    usersBlock
+    usersTasks
   },
   async fetch ({ store }) {
     await store.dispatch('users/fetchTodos')
