@@ -6,4 +6,8 @@
   h1 {
     @apply text-5xl;
   }
+
+  .card {
+    @apply block flex justify-between cursor-default text-2xl py-1 px-2 bg-gray-200 mb-2
+  }
 }
