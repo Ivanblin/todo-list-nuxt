@@ -1,13 +1,14 @@
 <template>
   <div class="flex">
     <div class="w-full">
-      <div v-for="(user, i) in usersTask" :key='i' @click="click(user.id)">
+      <div v-for="(task, i) in usersTask" :key='i'>
         <cardTask
-        :title='user.title'
-        :link="'/todos/' + user.id"
-        :user='user.userId'
-        :status='user.completed'
-      />
+          :title='task.title'
+          :link="'/todoUser/' + task.id"
+          :user='task.userId'
+          :status='task.completed'
+          active
+        />
       </div>
     </div>
     <div class="fixed right-0">
@@ -40,11 +41,6 @@ export default {
     },
     users: {
       type: Number
-    }
-  },
-  methods: {
-    click (e) {
-      this.$store.commit('users/SET_USER_ID', e)
     }
   }
 }

@@ -1,8 +1,7 @@
 <template>
     <NuxtLink
       :to="link"
-      class="card flex justify-between"
-      @click="click"
+      :class="{'card': true, 'hover:bg-red-700 cursor-pointer': active}"
     >
       <span>{{title}} <br>User {{user}}</span>
       <span v-if="!status">close</span>
@@ -30,12 +29,10 @@ export default {
     status: {
       type: Boolean,
       default: true
-    }
-  },
-  methods: {
-    click (e) {
-      this.$emit('click')
-      console.log('sadasd')
+    },
+    active: {
+      type: Boolean,
+      default: false
     }
   }
 }

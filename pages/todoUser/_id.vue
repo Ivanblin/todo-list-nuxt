@@ -6,24 +6,34 @@
       :status='user.completed'
       :user='user.userId'
     />
+    <NuxtLink to="/">
+      <Btn title='Посмотреть список всех задач пользователя'/>
+    </NuxtLink>
   </div>
 </template>
 
 <script>
 import cardTask from '@/components/elements/card'
+import Btn from '@/components/ui/button'
 
 export default {
   name: '_id',
   components: {
-    cardTask
+    cardTask,
+    Btn
   },
   validate ({ params }) {
     // Must be a number
     return /^\d+$/.test(params.id)
   },
-  async asyncData ({ query, $axios, params }) {
+  async asyncData ({ $axios, params }) {
     const user = await $axios.$get(`https://jsonplaceholder.typicode.com/todos/${params.id}`)
     return { user }
+  },
+  methods: {
+    click () {
+      console.log('sadasd')
+    }
   }
 }
 </script>
