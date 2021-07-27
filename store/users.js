@@ -1,12 +1,18 @@
 export const state = () => ({
-  usersTodos: null
-  // userTodo: null
-  // taskId: null
+  todos: [],
+  filters: [],
+  users: []
 })
 
 export const mutations = {
-  SET_USERS_TODOS: (state, users) => {
-    state.usersTodos = users
+  SET_TODOS (state, users) {
+    state.todos = users
+  },
+  SET_FILTERS (state, payload) {
+    state.filters = payload
+  },
+  SET_USERS (state, payload) {
+    state.users = payload
   }
   // SET_USER_TODO: (state, users) => {
   //   state.userTodo = users
@@ -19,10 +25,13 @@ export const mutations = {
 }
 
 export const actions = {
-  async fetchTodos ({ commit }) {
-    const usersTodos = await this.$axios.$get('https://jsonplaceholder.typicode.com/todos')
-    // console.log(usersTodos)
-    commit('SET_USERS_TODOS', usersTodos)
+  async fetchTodos ({ commit, state }, users = []) {
+    const todos = await this.$axios.$get('https://jsonplaceholder.typicode.com/todos', {
+      params: {
+        userId: state.filters
+      }
+    })
+    commit('SET_TODOS', todos)
   }
   // async fetchTodoUser ({ commit, state }) {
   //   const userTodo = await this.$axios.$get('https://jsonplaceholder.typicode.com/todos/9')
@@ -34,7 +43,7 @@ export const actions = {
 }
 
 export const getters = {
-  usersTodos: state => state.usersTodos
-  // userTodo: state => state.userTodo
-  // taskId: state => state.taskId
+  todos: state => state.todos,
+  filters: state => state.filters,
+  users: state => state.users
 }
