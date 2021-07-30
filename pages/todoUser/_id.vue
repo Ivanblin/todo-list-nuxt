@@ -1,12 +1,15 @@
 <template>
   <div class="container mx-auto">
+    <NuxtLink to="/">
+      <Btn title='На главную'/>
+    </NuxtLink>
     <h1 class="text-center mb-4">Текущая задача пользователя</h1>
     <cardTask
       :title='user.title'
       :status='user.completed'
       :user='user.userId'
     />
-    <NuxtLink to="/">
+    <NuxtLink :to="'/todosUser/' + user.userId">
       <Btn title='Посмотреть список всех задач пользователя'/>
     </NuxtLink>
   </div>
@@ -29,11 +32,6 @@ export default {
   async asyncData ({ $axios, params }) {
     const user = await $axios.$get(`https://jsonplaceholder.typicode.com/todos/${params.id}`)
     return { user }
-  },
-  methods: {
-    click () {
-      console.log('sadasd')
-    }
   }
 }
 </script>

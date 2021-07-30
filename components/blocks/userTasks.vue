@@ -1,5 +1,5 @@
 <template>
-  <div class="flex">
+  <div>
     <div class="w-full">
       <div v-for="(task, i) in usersTask" :key='i'>
         <cardTask
@@ -10,16 +10,6 @@
           active
         />
       </div>
-    </div>
-    <div class="fixed right-0">
-      <div
-      v-for="(user, i) in users"
-      :key='i'
-      class="block"
-    >
-      <input type="checkbox">
-      User {{i + 1}}
-    </div>
     </div>
   </div>
 </template>
@@ -38,9 +28,6 @@ export default {
       default: () => {
         return []
       }
-    },
-    users: {
-      type: Number
     }
   }
 }
