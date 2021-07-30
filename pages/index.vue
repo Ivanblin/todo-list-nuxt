@@ -1,12 +1,13 @@
 <template>
   <div class="container mx-auto">
     <h1 class="text-center border-b-2 py-4">Список задач</h1>
-    {{ filters }}
     <users-filter
+      class="fixed right-0"
       :users="users"
       @change="setFilters($event)"
     />
-    <users-tasks
+    <user-tasks
+      class="w-4/5"
       :usersTask="todos"
     />
   </div>
@@ -14,13 +15,13 @@
 
 <script>
 import { mapMutations, mapGetters } from 'vuex'
-import usersTasks from '@/components/blocks/usersTasks'
+import userTasks from '@/components/blocks/userTasks'
 import UsersFilter from '~/components/blocks/UsersFilter'
 
 export default {
   components: {
     UsersFilter,
-    usersTasks
+    userTasks
   },
   computed: {
     ...mapGetters({
